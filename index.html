@@ -433,32 +433,35 @@
             }, 5000);
         });
 
-        // ---------- THEME TOGGLE (dark/light) with Font Awesome icons ----------
+        // ---------- THEME TOGGLE (dark/light) – keep navbar links white always ----------
         let dark = true;
         document.getElementById('themeToggle').addEventListener('click', function() {
-            const icon = this.querySelector('i'); // <i class="fa fa-moon-o">
+            const icon = this.querySelector('i');
             const hero = document.querySelector('#home');
+            const nav = document.querySelector('nav');
 
             if (dark) {
                 // Switch to LIGHT mode
                 document.body.style.backgroundColor = '#f8f9fa';
                 document.body.style.color = '#212529';
 
-                // Hero: remove dark background & text-white, add light background & text-dark
+                // Hero: light background, dark text
                 hero.classList.remove('bg-primary', 'bg-gradient', 'text-white');
                 hero.classList.add('bg-light', 'text-dark');
 
-                // Other sections
+                // Testimonials & Footer: light background, dark text
                 document.querySelector('#testimonials').classList.remove('bg-dark', 'text-white');
                 document.querySelector('#testimonials').classList.add('bg-light', 'text-dark');
 
                 document.querySelector('footer').classList.remove('bg-dark', 'text-white');
                 document.querySelector('footer').classList.add('bg-light', 'text-dark');
 
-                document.querySelector('nav').classList.remove('bg-dark', 'navbar-dark');
-                document.querySelector('nav').classList.add('bg-danger', 'navbar-light');
+                // Nav: keep navbar-dark so links stay white, change background to danger
+                nav.classList.remove('bg-dark');
+                nav.classList.add('bg-danger');
+                // Ensure navbar-dark is still there (we don't remove it)
 
-                // Update icon to sun (Font Awesome)
+                // Update icon to sun
                 icon.className = 'fa fa-sun-o';
                 dark = false;
             } else {
@@ -466,21 +469,22 @@
                 document.body.style.backgroundColor = '';
                 document.body.style.color = '';
 
-                // Hero: remove light background & text-dark, add dark background & text-white
+                // Hero: dark background, white text
                 hero.classList.remove('bg-light', 'text-dark');
                 hero.classList.add('bg-primary', 'bg-gradient', 'text-white');
 
-                // Other sections
+                // Testimonials & Footer: dark background, white text
                 document.querySelector('#testimonials').classList.remove('bg-light', 'text-dark');
                 document.querySelector('#testimonials').classList.add('bg-dark', 'text-white');
 
                 document.querySelector('footer').classList.remove('bg-light', 'text-dark');
                 document.querySelector('footer').classList.add('bg-dark', 'text-white');
 
-                document.querySelector('nav').classList.remove('bg-light', 'navbar-light');
-                document.querySelector('nav').classList.add('bg-dark', 'navbar-dark');
+                // Nav: revert to dark background, keep navbar-dark
+                nav.classList.remove('bg-danger');
+                nav.classList.add('bg-dark');
 
-                // Update icon to moon (Font Awesome)
+                // Update icon to moon
                 icon.className = 'fa fa-moon-o';
                 dark = true;
             }
